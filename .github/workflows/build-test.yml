@@ -28,5 +28,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_GITLAB_CI_COURS}}
-          heroku_app_name: "Gitlab CI Cours Deploy" #Must be unique in Heroku
+          heroku_app_name: "gitlab-ci-cours" #Must be unique in Heroku
           heroku_email: "zaid.anaee@yahoo.com"
