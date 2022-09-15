@@ -30,3 +30,13 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_GITLAB_CI_COURS}}
           heroku_app_name: "gitlab-ci-cours" #Must be unique in Heroku
           heroku_email: "zaid.anaee@yahoo.com"
+
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . -t Zaiddd/gitlab-ci-cours:latest
+      - name: Publish the Docker image
+        run: docker push Zaiddd/gitlab-ci-cours:latest
