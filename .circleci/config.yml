@@ -41,5 +41,5 @@ workflows:
               - node/run
 
       - docker/publish:
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          image: Zaiddd/joke-app
           update-description: true
