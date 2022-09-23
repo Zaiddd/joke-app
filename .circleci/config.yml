@@ -17,6 +17,21 @@ jobs:
             "Je vais déployer sur Heroku depuis CircleCI"
       - heroku/deploy-via-git
 
+  build-and-push:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: $DOCKER_LOGIN/joke-app
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $DOCKER_LOGIN/joke-app
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
+
 workflows:
   node-test:
     jobs:
@@ -40,6 +55,7 @@ workflows:
               - node/test
               - node/run
 
-      - docker/publish:
-          image: Zaiddd/joke-app
-          update-description: true
+      - build-and-push:
+          requires:
+              - node/test
+              - node/run
