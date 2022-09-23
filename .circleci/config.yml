@@ -9,7 +9,7 @@ workflows:
       - node/test:
           matrix:
             parameters:
-              version: ["14", "12", "16"]
+              version: ["12.13", "14.19", "16.15"]
           filters:
             branches:
               only: main
