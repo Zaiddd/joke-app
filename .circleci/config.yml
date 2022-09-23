@@ -4,6 +4,18 @@ orbs:
   node: circleci/node@5.0.2
   heroku: circleci/heroku@1.2.6
 
+jobs:
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run: heroku config::set ...
+      - run:
+          command: >
+            "Je vais déployer sur Heroku depuis CircleCI"
+      - heroku/deploy-via-git
+
 workflows:
   node-test:
     jobs:
