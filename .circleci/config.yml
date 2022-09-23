@@ -1,1 +1,19 @@
 version: 2.1
+
+jobs:
+  circleci-test:
+    docker:
+      - image: cimg/node:16.17.1
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build
+      - run: npm test
+
+workflows:
+  node-test:
+    jobs:
+      - circleci-test:
+          filters:
+            branches:
+              only: main
